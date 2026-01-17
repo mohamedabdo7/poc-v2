@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
-        <Scene modelPath="/models/KAFD-Room2.glb" />
+        <Scene modelPath="/models/KAFD-Room3-compressed.glb" />
       </Suspense>
     </div>
   );
