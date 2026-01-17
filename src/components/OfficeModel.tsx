@@ -15,6 +15,8 @@ export const OfficeModelComponent: React.FC<OfficeModelProps> = ({
   const { scene } = useGLTF(modelPath) as OfficeModel;
 
   useEffect(() => {
+    if (!scene) return;
+
     scene.traverse((object) => {
       if (object instanceof Mesh) {
         object.castShadow = true;
