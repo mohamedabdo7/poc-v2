@@ -1,30 +1,14 @@
-/**
- * الإضاءة الداخلية (لمبات المكتب)
- *
- * لماذا component منفصل؟
- * - تمثل اللمبات الحقيقية داخل المكتب
- * - كل لمبة لها ID/name للتحكم الفردي
- * - تشغيلها/إطفاؤها يؤثر بوضوح على الغرفة
- * - المصدر الأساسي للإضاءة في الليل
- */
-
 import { INTERIOR_LIGHTS, LightType } from "../types/LightingTypes";
 
-interface InteriorLightingProps {
-  // في المستقبل: يمكن إضافة enabledLights: string[] للتحكم
-}
-
-export const InteriorLighting: React.FC<InteriorLightingProps> = () => {
+export const InteriorLighting: React.FC = () => {
   return (
     <>
       {INTERIOR_LIGHTS.map((light) => {
-        // لمبات السقف - rectAreaLight
-        // Note: R3F يوفر rectAreaLight مباشرة بدون import
         if (light.type === LightType.RECT_AREA) {
           return (
             <rectAreaLight
               key={light.id}
-              name={light.id} // مهم للتحكم لاحقاً
+              name={light.id}
               position={light.position}
               width={light.width!}
               height={light.height!}
@@ -35,12 +19,11 @@ export const InteriorLighting: React.FC<InteriorLightingProps> = () => {
           );
         }
 
-        // لمبات المكاتب - PointLight
         if (light.type === LightType.POINT) {
           return (
             <pointLight
               key={light.id}
-              name={light.id} // مهم للتحكم لاحقاً
+              name={light.id}
               position={light.position}
               intensity={light.intensity}
               color={light.color}
@@ -51,7 +34,6 @@ export const InteriorLighting: React.FC<InteriorLightingProps> = () => {
           );
         }
 
-        // SpotLight (لو احتجناه لاحقاً)
         if (light.type === LightType.SPOT) {
           return (
             <spotLight
@@ -69,14 +51,6 @@ export const InteriorLighting: React.FC<InteriorLightingProps> = () => {
 
         return null;
       })}
-
-      {/* 
-        Note: في المستقبل يمكن إضافة:
-        - Helper visuals لكل لمبة (في dev mode)
-        - تحكم في تشغيل/إطفاء كل لمبة
-        - تغيير الـ intensity ديناميكياً
-        - تغيير اللون
-      */}
     </>
   );
 };

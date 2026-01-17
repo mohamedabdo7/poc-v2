@@ -88,14 +88,6 @@ export const FirstPersonCamera: React.FC = () => {
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
-    console.log("🎮 First Person Controls:");
-    console.log("Click screen to lock mouse");
-    console.log("W/A/S/D - Move");
-    console.log("Space - Up");
-    console.log("Shift - Down");
-    console.log("P - Print Position");
-    console.log("ESC - Unlock mouse");
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);

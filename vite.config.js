@@ -9,29 +9,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    port: 3000,
-    open: true,
-  },
+  publicDir: "public",
   build: {
     outDir: "dist",
-    sourcemap: true,
-    assetsInlineLimit: 0, // لا تحول الملفات الكبيرة لـ base64
-    rollupOptions: {
-      output: {
-        assetFileNames: (assetInfo) => {
-          // احتفظ بـ GLB files في public/models مباشرة
-          if (
-            assetInfo.name.endsWith(".glb") ||
-            assetInfo.name.endsWith(".gltf")
-          ) {
-            return "models/[name].[ext]";
-          }
-          return "assets/[name]-[hash].[ext]";
-        },
-      },
-    },
+    assetsDir: "assets",
+    sourcemap: false,
   },
-  // تأكد من نسخ الملفات صح
-  publicDir: "public",
+  assetsInclude: ["**/*.glb", "**/*.gltf"],
 });
