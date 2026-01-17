@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -17,5 +16,8 @@ export default defineConfig({
   build: {
     outDir: "dist",
     sourcemap: true,
+    assetsInlineLimit: 0, // لا تحول الملفات الكبيرة لـ base64
   },
+  // تأكد من نسخ الملفات صح
+  publicDir: "public",
 });
